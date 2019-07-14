@@ -11,6 +11,7 @@ Project3.md
 Project5.md
     Implementation
 Project6.md
+    Continuous Integration
     Integration tests
     Performance testing
         locust
