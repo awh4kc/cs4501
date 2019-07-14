@@ -1,0 +1,18 @@
+Project1.md:
+    Install everything
+    Setting up MySQL
+    Working with containers
+    Making your own containers
+    Trying it all out
+Project2.md
+    Docker Compose
+Project3.md
+    Container Linking
+Project5.md
+    Implementation
+Project6.md
+    Integration tests
+    Performance testing
+        locust
+Project7.md
+    Spark Setup
