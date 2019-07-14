@@ -90,7 +90,7 @@ terminal.
 
 If you don't, install it:
 
-	$ sudo curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+	$ sudo curl -L https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
 	$ chmod +x /usr/local/bin/docker-compose
 
 
@@ -101,15 +101,22 @@ exactly as docker-compose.yml). Docker Compose uses these files, called YAML (pr
 You can tell compose to create a new container by giving it a name and an image to use.
 
 ```YAML
-models:
-  image: tp33/django
-  external_links:
-    - mysql:db
-  volumes:
-    - <project_root_dir>:/app
-  ports:
-    - "8001:8000"
-  command: bash -c "mod_wsgi-express start-server --working-directory <project_root_dir> --reload-on-changes <path_to_wsgi.py>/wsgi.py"
+version: '3.7'
+services:
+  models:
+    image: tp33/django
+    networks:
+      - db_network
+    volumes:
+      - <project_root_dir>:/app
+    ports:
+      - "8001:8000"
+    command: bash -c "mod_wsgi-express start-server --working-directory <project_root_dir> --reload-on-changes <path_to_wsgi.py>/wsgi.py"
+
+networks:
+  db_network:
+    external:
+      name: db_network
 ```
 
 Notice the difference between external_links and links. We use links to link to
